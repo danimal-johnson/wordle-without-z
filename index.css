@@ -10,7 +10,8 @@
   --color-lightgrey: #818384;
   --color-whitetext: #D7DADC;
   --color-greytext: #565758;
-  --color-background: #121213;
+  /* --color-background: #121213; */
+  --color-background: hsl(240, 3%, 7%);
 }
 
 body {
@@ -29,25 +30,38 @@ body {
   background: var(--color-background);
 }
 
+/* ------- Game board ------- */
+
 .gameboard {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  grid-gap: 4px;
+  grid-gap: .25em;
   margin-bottom: 20px;
 }
 
 .cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: var(--color-background);
   border: 1px solid var(--color-greytext);
   color: var(--color-whitetext);
   font-size: 1.5em;
   font-weight: bold;
+  line-height: 1;
   text-align: center;
-  padding: 0.5em;
-  height: 3em;
-  width: 3em;
+  padding: 0.5em .25em;
+  height: 2.5em;
+  width: 2.5em;
 }
+
+.cell.wrong-position, .cell.match .cell.inccorect {
+  border: none;
+}
+
+/* ------- Keyboard ------- */
 
 .keyboard {
   display: grid;
@@ -56,12 +70,18 @@ body {
   gap: 0.25em;
   justify-content: center;
   margin-bottom: 20px;
-
 }
 
 .key {
   color: var(--color-whitetext);
-  background: var(--color-lightgrey);
+  /* fill: white; */
+
+  background-color: hsl(
+    var(--hue, 200),
+    var(--saturation, 1%),
+    calc(var(--lightness-offset, 0%) + var(--lightness, 51%))
+  );
+  
   grid-column: span 2;
   font-size: inherit;
   border-radius: 5px;
@@ -75,6 +95,7 @@ body {
 
 .key-offset {
   /* border: 1px solid hotpink; */
+  /* background-color: hsl(115, 29%, 43%); */
 }
 
 .key.large {
@@ -85,14 +106,20 @@ body {
   width: 1.75em;
 }
 
-.incorrect {
-  background: var(--color-darkgrey);
+.key.incorrect {
+  --lightness: 23%;
+}
+.key.wrong-position {
+  --hue: 49;
+  --saturation: 51%;
+  --lightness: 47%;
+}
+.key.match {
+  --hue: 115;
+  --saturation: 29%;
+  --lightness: 43%;
+}
+.key:hover, .key:focus {
+  --lightness-offset: 10%;
 }
 
-.wrong-position {
-  background: var(--color-yellow);
-}
-
-.match {
-  background: var(--color-green);
-}
