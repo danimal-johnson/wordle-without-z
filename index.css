@@ -4,8 +4,8 @@
 
 :root {
   /* Dark mode */
-  --color-yellow: #B59F3B;
-  --color-green: #538D4E;
+  --color-yellow: hsl(49, 50%, 47%);
+  --color-green: hsl(115,28%,42%);
   --color-darkgrey: #3A3A3C;
   --color-lightgrey: #818384;
   --color-whitetext: #D7DADC;
