@@ -56,10 +56,12 @@ body {
   font-weight: bold;
   text-transform: uppercase;
   user-select: none;
+  transition: transform 250ms linear;
 }
 
 .cell[data-state="active"] {
-  border-color: hsl(200, 1%, 34%);
+  /* border-color: hsl(200, 1%, 34%); */
+  border-color: hotpink;
 }
 
 .cell.wrong-position, .cell.match, .cell.incorrect {
@@ -73,6 +75,57 @@ body {
 }
 .cell.match {
   background-color: var(--color-green);
+}
+
+.cell.flip {
+  transform: rotateX(90deg);
+}
+
+.cell.shake {
+  animation: shake .5s ease-in-out;
+}
+
+@keyframes shake {
+  10% {
+    transform: translateX(-5%);
+  }
+  30% {
+    transform: translateX(5%);
+  }
+  50% {
+    transform: translateX(-7.5%);
+  }
+  70% {
+    transform: translateX(7.5%);
+  }
+  90% {
+    transform: translateX(-5%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.cell.dance {
+  animation: dance .5s ease-in-out;
+}
+
+@keyframes dance {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 /* ------- Keyboard ------- */
