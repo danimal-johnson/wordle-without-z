@@ -66,7 +66,11 @@ function submitGuess() {
   // If a full row has been entered, check if it's correct
   let submittedWord = '';
   const activeTiles = getActiveTiles();
-  if (activeTiles.length < WORD_LENGTH) return;
+  if (activeTiles.length < WORD_LENGTH) {
+    showAlert('Please enter a full word.');
+    shakeTiles(activeTiles);
+    return;
+  }
   
   console.log('Submitting...');
   for (tile of activeTiles) {
@@ -95,6 +99,30 @@ function deleteLastLetter() {
   lastTile.textContent = '';
   delete lastTile.dataset.state;
   delete lastTile.dataset.letter;
+}
+
+// ----- Helper functions -----
+function showAlert(message) {
+  const alertContainer = document.querySelector('[data-alert-container]');
+  const alert = document .createElement('div');
+  alert.textContent = message;
+  alert.classList.add('alert');
+  alertContainer.prepend(alert);
+  setTimeout(() => {
+    alert.classList.add('hide');
+  }, 3000);
+  setTimeout(() => {
+    alertContainer.removeChild(alert);
+  }, 4000);
+}
+
+function shakeTiles(tiles) {
+  for (tile of tiles) {
+    tile.classList.add('shake');
+    setTimeout(() => {
+      tile.classList.remove('shake');
+    }, 500);
+  }
 }
 
 // ----- Start the game -----
