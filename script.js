@@ -10,11 +10,8 @@ const FLIP_ANIMATION_DURATION = 500;
 const startingDate = new Date(2022, 0, 1);
 const timeSinceDate = Date.now() - startingDate;
 const wordIndex = Math.floor(timeSinceDate / 1000 / 3600 / 24) % wordlist.length;
-// const targetWord = wordlist[wordIndex];
+const targetWord = wordlist[wordIndex];
 console.log(`Index ${wordIndex} = ${wordlist[wordIndex]}`);
-
-let targetWord = 'hello'; // TODO: Remove after testing
-
 
 function handleKeyPress(e) {
   const key = e.key;
@@ -56,7 +53,6 @@ function getActiveTiles() {
 
 function pressKey(key) {
   // Adds the letter to the guess and update the display
-  console.log('Receiving key:', key);
   const activeTiles = getActiveTiles();
   if (activeTiles.length >= WORD_LENGTH) return;
 
@@ -89,13 +85,11 @@ function submitGuess() {
   
   // Check for win/lose is called from the last flipTile
 
-  }
   startInteraction(); // Necessary?
 }
 
 function deleteLastLetter() {
   // Delete the last letter from the guess (current row only)
-  console.log('Deleting last letter...');
   const activeTiles = getActiveTiles();
   if (activeTiles.length === 0) return;
 
@@ -138,7 +132,6 @@ function flipTile(tile, index, array, submittedWord) {
   }, index * 500);
 
   tile.addEventListener('transitionend', () => {
-    console.log('Transitioned');
     tile.classList.remove('flip');
     if (targetWord[index] === letter) {
       key.classList.add('match');
@@ -172,22 +165,23 @@ function checkWinLose(submittedWord, tiles) {
   }
   const remainingTiles = guessGrid.querySelectorAll(':not([data-letter])');
   if (remainingTiles.length === 0) {
-    showAlert('You Lose!', 5000);
-    showAlert(`The word was ${targetWord.toUpperCase()}`, 5000);
+    showAlert(`${targetWord.toUpperCase()}`, null);
     shakeTiles(tiles);
     stopInteraction();
   }
 }
 
 function danceTiles(tiles) {
-  for (let tile of tiles) {
-    tile.classList.add('dance');
-    tile.addEventListener('animationend', () => {
-      tile.classList.remove('dance');
-    }, { once: true });
+  for (let i = 0; i < tiles.length; i++) {
+    const tile = tiles[i];
+    setTimeout(() => {
+      tile.classList.add('dance');
+      tile.addEventListener('animationend', () => {
+        tile.classList.remove('dance');
+      }, { once: true });
+    }, (i * DANCE_ANIMATION_DURATION) / 5);
   }
 }
-
 
 function startInteraction() {
   document.addEventListener('keydown', handleKeyPress);
