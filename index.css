@@ -196,6 +196,11 @@ header h1 {
   width: 1.75em;
 }
 
+.key img {
+  max-width: 70%;
+  pointer-events: none;
+}
+
 .key.incorrect {
   --lightness: 23%;
 }

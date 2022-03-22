@@ -31,6 +31,10 @@ function handleKeyPress(e) {
 function handleClick(e) {
   if (e.target.matches('[data-key]')) {
     const key = e.target.dataset.key;
+    if(key === 'Z') {
+      console.log('Z clicked');
+      return;
+    }
     pressKey(key);
     return;
   }
