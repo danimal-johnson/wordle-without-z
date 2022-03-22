@@ -46,15 +46,34 @@ header {
   border-bottom: 1px solid var(--color-greytext);
   width: 100vw;
   margin-bottom: 1em;
+  color: var(--color-greytext);
 }
 
 header h1 {
-  font-size: clamp(1em, 1.5em, 2em);
+  font-size: clamp(1em, 1.6em, 2em);
   line-height: 1;
   margin: 0;
   padding: .2em .4em;
-  /* margin-top: .1em; */
-  /* padding-top: .5em; */
+  color: var(--color-whitetext);
+}
+
+header .left-icons {
+  padding-left: .5rem;
+}
+
+header .right-icons {
+  padding-right: .5rem;
+}
+
+header svg {
+  width: 2em;
+  padding: .2em;
+  transition: color 150ms ease-in-out;
+}
+
+header svg:hover {
+  color: var(--color-ukraine-blue);
+  cursor: pointer;
 }
 
 /* ------- Game board ------- */
