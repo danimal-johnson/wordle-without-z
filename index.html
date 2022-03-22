@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wordle Clone</title>
+  <title>A Wordle Without Z</title>
   <link rel="stylesheet" href="index.css">
   <script src="wordlist.js" defer></script>
   <script src="dictionary.js" defer></script>
@@ -12,7 +12,7 @@
 </head>
 <body>
   <header>
-    <h1>WORDLE</h1>
+    <h1>WORDLE WITHOUT Z</h1>
   </header>
   <div class="alert-container" data-alert-container></div>
   <div data-guess-grid class="gameboard">
@@ -73,7 +73,7 @@
     <button class="key" data-key="L">L</button>
 
     <button class="key large" data-enter>ENTER</button>
-    <button class="key" data-key="Z">Z</button>
+    <button class="key" data-key="Z"><img src="flag.svg" style="width: 2rem; pointer-events: none;" alt=""></button>
     <button class="key" data-key="X">X</button>
     <button class="key" data-key="C">C</button>
     <button class="key" data-key="V">V</button>
@@ -81,7 +81,7 @@
     <button class="key" data-key="N">N</button>
     <button class="key" data-key="M">M</button>
     <button class="key large" data-backspace>
-      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" style="pointer-events: none;">
         <path fill="var(--color-whitetext)" d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41
           8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4
           12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59

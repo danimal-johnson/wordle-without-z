@@ -6,12 +6,19 @@
   /* Dark mode */
   --color-yellow: hsl(49, 50%, 47%);
   --color-green: hsl(115,28%,42%);
+  
+  --color-ukraine-blue: hsl(208,100%,50%);
+  --color-ukraine-yellow: hsl(49,50%,47%);
+  /* Official yellow is actually #ffdd00 = hsl(52, 100%, 50%) = too bright!! */
+
   --color-darkgrey: #3A3A3C;
   --color-lightgrey: #818384;
   --color-whitetext: #D7DADC;
   --color-greytext: #565758;
-  /* --color-background: #121213; */
   --color-background: hsl(240, 3%, 7%);
+
+  --color-almost: var(--color-ukraine-yellow);
+  --color-correct: var(--color-ukraine-blue);
 }
 
 body {
@@ -32,6 +39,7 @@ body {
 }
 
 header h1 {
+  font-size: clamp(2rem, 2.5vmin, 1.5rem);
   margin-top: .1em;
   /* padding-top: .5em; */
 }
@@ -77,10 +85,10 @@ header h1 {
   background-color: var(--color-lightgrey);
 }
 .cell.wrong-position {
-  background-color: var(--color-yellow);
+  background-color: var(--color-almost);
 }
 .cell.match {
-  background-color: var(--color-green);
+  background-color: var(--color-correct);
 }
 
 .cell.flip {
@@ -192,14 +200,19 @@ header h1 {
   --lightness: 23%;
 }
 .key.wrong-position {
+  /* --color-ukraine-yellow: hsl(49,50%,47%);
+     actually ffdd00 = 52, 100%, 50% = too bright!!
+  */
+
   --hue: 49;
-  --saturation: 51%;
+  --saturation: 50%;
   --lightness: 47%;
 }
 .key.match {
-  --hue: 115;
-  --saturation: 29%;
-  --lightness: 43%;
+  /* --color-ukraine-blue: hsl(208,100%,50%); */
+  --hue: 208;
+  --saturation: 100%;
+  --lightness: 50%;
 }
 .key:hover, .key:focus {
   --lightness-offset: 10%;

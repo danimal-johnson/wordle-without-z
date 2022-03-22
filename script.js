@@ -23,7 +23,7 @@ function handleKeyPress(e) {
     deleteLastLetter();
     return;
   }
-  if (key.match(/^[a-zA-Z]$/)) {
+  if (key.match(/^[a-yA-Y]$/)) {
     pressKey(key);
   }
 }
