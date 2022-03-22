@@ -82,10 +82,6 @@ function submitGuess() {
 
   stopInteraction();
   activeTiles.forEach((...params) => flipTile(...params, submittedWord));
-  
-  // Check for win/lose is called from the last flipTile
-
-  startInteraction(); // Necessary?
 }
 
 function deleteLastLetter() {

@@ -22,12 +22,18 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 1em;
+  padding-top: .1em;
 
   font-family: 'Open Sans', sans-serif;
   font-size: clamp(.5rem, 2.5vmin, 1.5rem);
   line-height: 1.5;
   color: var(--color-whitetext);
   background: var(--color-background);
+}
+
+header h1 {
+  margin-top: .1em;
+  /* padding-top: .5em; */
 }
 
 /* ------- Game board ------- */
@@ -61,6 +67,7 @@ body {
 
 .cell[data-state="active"] {
   border-color: hsl(200, 1%, 34%);
+  animation: zoom-in-zoom-out 50ms ease;
 }
 
 .cell.wrong-position, .cell.match, .cell.incorrect {
@@ -129,18 +136,15 @@ body {
   }
 }
 
-.cell[data-state="active"]{
-  animation: zoom-in-zoom-out 50ms ease;
-}
 @keyframes zoom-in-zoom-out {
   0% {
-    transform: scale(1,1);
+    transform: scale(1);
   }
   50% {
-    transform: scale(1.25, 1.25);
+    transform: scale(1.25);
   }
   100% {
-    transform: scale(1,1);
+    transform: scale(1);
   }
 }
 
@@ -174,11 +178,6 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-}
-
-.key-offset {
-  /* border: 1px solid hotpink; */
-  /* background-color: hsl(115, 29%, 43%); */
 }
 
 .key.large {
