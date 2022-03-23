@@ -3,6 +3,9 @@
 const guessGrid = document.querySelector('[data-guess-grid]');
 const keyboard = document.querySelector('[data-keyboard]');
 const alertContainer = document.querySelector('[data-alert-container]');
+const modalContainer = document.querySelector('#modal-container');
+const modalContent = document.querySelector('#modal-content');
+
 const WORD_LENGTH = 5;
 const DANCE_ANIMATION_DURATION = 1000;
 const FLIP_ANIMATION_DURATION = 500;
@@ -182,6 +185,43 @@ function danceTiles(tiles) {
     }, (i * DANCE_ANIMATION_DURATION) / 5);
   }
 }
+
+// ----- Modal functions -----
+
+const openModal = e => {
+  const topic = e.target.dataset.topic;
+  console.log('openModal', topic);
+  e.preventDefault();
+  e.stopPropagation();
+  modalContent.innerHTML = `<h3>Loading ${topic}.html...</h3>`;
+  modalContainer.classList.add('show');
+  setTimeout(() => {
+    modalContainer.classList.remove('show');
+  }, 500);
+  
+}
+
+const closeModal = e => {
+  e.preventDefault();
+  modalContainer.classList.remove('show');
+}
+
+// TODO: Assign the next 4 in a single loop.
+const btnConnect = document.querySelector('.btn-connect');
+const btnLinks = document.querySelector('.btn-links');
+const btnRadio = document.querySelector('.btn-radio');
+const btnAbout = document.querySelector('.btn-about');
+btnConnect.addEventListener('click', openModal);
+btnLinks.addEventListener('click', openModal);
+btnRadio.addEventListener('click', openModal);
+btnAbout.addEventListener('click', openModal);
+
+// for (let button of menuButtons) {
+//   button.addEventListener('click', openModal);
+// }
+//  menuButtons.forEach(button => button.addEventListener('click', openModal));
+
+// ----- Interaction functions -----
 
 function startInteraction() {
   document.addEventListener('keydown', handleKeyPress);

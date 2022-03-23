@@ -13,7 +13,7 @@
 <body>
   <header>
     <div class="left-icons">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <svg class="btn-connect" data-topic="connect" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
         <title>Connect</title>
         <path d="M256 48C141.13 48 48 141.13 48 256s93.13 208 208 208 208-93.13 208-208S370.87 48 256 48z"
           fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/>
@@ -22,7 +22,7 @@
         <path
           fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" d="M256 48v416M464 256H48"/>
       </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <svg class="btn-links" data-topic="links" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
         <title>Links</title>
         <g data-name="Layer 2">
           <g data-name="link-2"><rect width="24" height="24" opacity="0"/>
@@ -35,7 +35,7 @@
     </div>
     <div class="title"><h1>WORDLE WITHOUT Z</h1></div>
     <div class="right-icons">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <svg class="btn-radio" data-topic="radio" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
         <title>Shortwave</title>
         <g data-name="Layer 2">
           <g data-name="radio"><rect width="24" height="24" opacity="0"/>
@@ -47,8 +47,8 @@
           </g>
         </g>
       </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-        <title>Info</title>
+      <svg class="btn-about" data-topic="about" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <title>About</title>
         <g data-name="Layer 2">
           <g data-name="info">
             <rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/>
@@ -60,6 +60,9 @@
       </svg>
     </div>
   </header>
+  <div id="modal-container">
+    <div id="modal-content"><h1>The modal title</h1></div>
+  </div>
   <div class="alert-container" data-alert-container></div>
   <div data-guess-grid class="gameboard">
     <div class="cell"></div>
