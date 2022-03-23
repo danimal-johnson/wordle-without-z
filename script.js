@@ -15,29 +15,23 @@ const timeSinceDate = Date.now() - startingDate;
 const wordIndex = Math.floor(timeSinceDate / 1000 / 3600 / 24) % wordlist.length;
 const targetWord = wordlist[wordIndex];
 console.log(`Index ${wordIndex} = ${wordlist[wordIndex]}`);
+let gameOver = false;
 
-function handleKeyPress(e) {
-  const key = e.key;
-  if (key === 'Enter') {
-    submitGuess();
-    return;
-  }
-  if (key === 'Backspace' || key === 'Delete') {
-    deleteLastLetter();
-    return;
-  }
-  if (key.match(/^[a-yA-Y]$/)) {
-    pressKey(key);
-  }
-}
-
-// Handle clicks for all objects
+// ----- Handle clicks for all objects -----
 
 function handleClick(e) {
+  if (e.target.matches('[data-close-modal]')) {
+    closeModal();
+    return;
+  }
   if (e.target.matches('[data-topic]')) {
     openModal(e.target.dataset.topic);
     return;
   }
+
+  // Ignore all other clicks after game ends
+  if (gameOver) return;
+
   if (e.target.matches('[data-key]')) {
     const key = e.target.dataset.key;
     if(key === 'Z') {
@@ -58,11 +52,6 @@ function handleClick(e) {
   }
 }
 
-function getActiveTiles() {
-  // Returns an array of all unsubmitted tiles on a line.
-  return guessGrid.querySelectorAll('[data-state="active"]');
-}
-
 // ----- Handle all keyboard inputs -----
 
 function pressKey(key) {
@@ -74,6 +63,21 @@ function pressKey(key) {
   nextTile.dataset.letter = key.toLowerCase();
   nextTile.textContent = key.toUpperCase();
   nextTile.dataset.state = 'active';
+}
+
+function handleKeyPress(e) {
+  const key = e.key;
+  if (key === 'Enter') {
+    submitGuess();
+    return;
+  }
+  if (key === 'Backspace' || key === 'Delete') {
+    deleteLastLetter();
+    return;
+  }
+  if (key.match(/^[a-yA-Y]$/)) {
+    pressKey(key);
+  }
 }
 
 function submitGuess() {
@@ -111,6 +115,12 @@ function deleteLastLetter() {
 }
 
 // ----- Helper functions -----
+
+function getActiveTiles() {
+  // Returns an array of all unsubmitted tiles on a line.
+  return guessGrid.querySelectorAll('[data-state="active"]');
+}
+
 function showAlert(message, duration = 1000) {
   const alert = document.createElement('div');
   alert.textContent = message;
@@ -133,6 +143,8 @@ function shakeTiles(tiles) {
     }, { once: true });
   }
 }
+
+// ----- Game Logic -----
 
 // FIXME: A tile is always marked yellow even if it has already been marked blue
 function flipTile(tile, index, array, submittedWord) {
@@ -171,14 +183,14 @@ function checkWinLose(submittedWord, tiles) {
   if (submittedWord === targetWord) {
     showAlert('You Win!', 5000);
     danceTiles(tiles);
-    stopInteraction();
+    endGame();
     return;
   }
   const remainingTiles = guessGrid.querySelectorAll(':not([data-letter])');
   if (remainingTiles.length === 0) {
     showAlert(`${targetWord.toUpperCase()}`, null);
     shakeTiles(tiles);
-    stopInteraction();
+    endGame();
   }
 }
 
@@ -198,9 +210,6 @@ function danceTiles(tiles) {
 function openModal (topic) {
   modalContent.innerHTML = `<object type="text/html" data="${topic}.html" ></object>`;
   modalContainer.classList.add('show');
-  setTimeout(() => {
-    modalContainer.classList.remove('show');
-  }, 2000);
 }
 
 function closeModal() {
@@ -217,6 +226,11 @@ function startInteraction() {
 function stopInteraction() {
   document.removeEventListener('keydown', handleKeyPress);
   document.removeEventListener('click', handleClick);
+}
+
+function endGame() {
+  gameOver = true;
+  document.removeEventListener('keydown', handleKeyPress);
 }
 
 // ----- Start the game -----

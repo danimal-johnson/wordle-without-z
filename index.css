@@ -306,10 +306,26 @@ header svg:hover {
   background-color: var(--color-background);
   z-index: 10;
   display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 #modal-container.show {
-  display: block;
+  /* display: block; */
+  display: flex;
+}
+
+#modal-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 2em;
+  padding: 1em;
+  background-color: var(--color-darkgrey);
+  
+  border-bottom: 1px solid hsl(240, 2%, 23%);
 }
 
 #modal-content {
@@ -333,7 +349,20 @@ header svg:hover {
 
 #modal-content h3 {
   font-size: 2em;
-  
+  color: red;
+}
+
+.modal-close {
+  color: var(--color-ukraine-blue);
+}
+.modal-close:hover {
+  color: var(--color-ukraine-yellow);
+  cursor: pointer;
+}
+.modal-close > svg {
+  padding-top: .25em;
+  width: 2em;
+  pointer-events: none;
 }
 
 @keyframes modalOpen {
