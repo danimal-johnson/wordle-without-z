@@ -31,11 +31,18 @@ function handleKeyPress(e) {
   }
 }
 
+// Handle clicks for all objects
+
 function handleClick(e) {
+  if (e.target.matches('[data-topic]')) {
+    openModal(e.target.dataset.topic);
+    return;
+  }
   if (e.target.matches('[data-key]')) {
     const key = e.target.dataset.key;
     if(key === 'Z') {
-      console.log('Z clicked');
+      console.error('Z clicked');
+      openModal('about');
       return;
     }
     pressKey(key);
@@ -127,6 +134,7 @@ function shakeTiles(tiles) {
   }
 }
 
+// FIXME: A tile is always marked yellow even if it has already been marked blue
 function flipTile(tile, index, array, submittedWord) {
   const letter = tile.dataset.letter;
   const key = keyboard.querySelector(`[data-key=${letter.toUpperCase()}]`);
@@ -187,39 +195,17 @@ function danceTiles(tiles) {
 }
 
 // ----- Modal functions -----
-
-const openModal = e => {
-  const topic = e.target.dataset.topic;
-  console.log('openModal', topic);
-  e.preventDefault();
-  e.stopPropagation();
-  modalContent.innerHTML = `<h3>Loading ${topic}.html...</h3>`;
+function openModal (topic) {
+  modalContent.innerHTML = `<object type="text/html" data="${topic}.html" ></object>`;
   modalContainer.classList.add('show');
   setTimeout(() => {
     modalContainer.classList.remove('show');
-  }, 500);
-  
+  }, 2000);
 }
 
-const closeModal = e => {
-  e.preventDefault();
+function closeModal() {
   modalContainer.classList.remove('show');
 }
-
-// TODO: Assign the next 4 in a single loop.
-const btnConnect = document.querySelector('.btn-connect');
-const btnLinks = document.querySelector('.btn-links');
-const btnRadio = document.querySelector('.btn-radio');
-const btnAbout = document.querySelector('.btn-about');
-btnConnect.addEventListener('click', openModal);
-btnLinks.addEventListener('click', openModal);
-btnRadio.addEventListener('click', openModal);
-btnAbout.addEventListener('click', openModal);
-
-// for (let button of menuButtons) {
-//   button.addEventListener('click', openModal);
-// }
-//  menuButtons.forEach(button => button.addEventListener('click', openModal));
 
 // ----- Interaction functions -----
 

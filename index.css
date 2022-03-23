@@ -59,21 +59,30 @@ header h1 {
 
 header .left-icons {
   padding-left: .5rem;
+  display: flex;
 }
 
 header .right-icons {
   padding-right: .5rem;
+  display: flex;
 }
 
 header svg {
   width: 2em;
   padding: .2em;
   transition: color 150ms ease-in-out;
+  pointer-events: none;
 }
 
 header svg:hover {
+  /* TODO: remove? */
   color: var(--color-ukraine-blue);
   cursor: pointer;
+}
+
+.btn-menu:hover {
+  cursor: pointer;
+  color: var(--color-ukraine-blue);
 }
 
 /* ------- Game board ------- */
@@ -320,6 +329,11 @@ header svg:hover {
   /* box-shadow: 0 0 .5em hsl(0, 0%, 20%); */
   animation-name: modalOpen;
   animation-duration: 1s;
+}
+
+#modal-content h3 {
+  font-size: 2em;
+  
 }
 
 @keyframes modalOpen {
