@@ -208,13 +208,31 @@ function danceTiles(tiles) {
 
 // ----- Modal functions -----
 function openModal (topic) {
-  modalContent.innerHTML = `<object type="text/html" data="${topic}.html" ></object>`;
+  // modalContent.innerHTML = `<object type="text/html" data="${topic}.html" ></object>`;
+  // modalContent.innerHTML = `<iframe src="${topic}.html" frameborder="0" allowfullscreen></iframe>`;
+  // modalContent.innerHTML = `<div id="modal-snippet" w3-include-html="${topic}.html"></div>`;
+  modalContent.innerHTML = `<div id="modal-snippet"><h3>Loading...</h3></div>`;
+  includeHTMLSnippet(document.getElementById('modal-snippet'), `${topic}.html`);
   modalContainer.classList.add('show');
 }
 
 function closeModal() {
   modalContainer.classList.remove('show');
 }
+
+function includeHTMLSnippet(targetElement, filename) {
+  let xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      targetElement.innerHTML =
+      this.responseText;
+    }
+  }
+  xhttp.open("GET", filename, true);
+  xhttp.send();
+}
+
 
 // ----- Interaction functions -----
 
