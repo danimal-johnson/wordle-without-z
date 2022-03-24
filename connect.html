@@ -1,15 +1,40 @@
-<h3>Connecting to the Internet</h3>
+<h3>Connecting to the Internet / Bypassing Blocking</h3>
+
 <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-    Quasi qui officia voluptatibus, architecto facilis aut rem ut
-    possimus fugit assumenda adipisci impedit atque similique
-    in eaque magni sequi quae labore doloremque animi dicta ea
-    id at delectus. Dolorem, exercitationem qui voluptatum eum
-    iusto maxime in libero consequatur, tenetur totam dolor!
+    If you've been blocked from international access to parts of the Internet, there are a few ways to get around this. This page will discuss using VPNs and the Tor network along with the the Tor Browser and operating systems like Tails.
 </p>
-<p>
-    If you've been blocked from international access to parts of the Internet,
-    there are a few ways to get around this. This page will discuss using VPNs
-    and the Tor network along with the the Tor Browser and operating systems
-    like Tails.
-</p>
+
+<h4>VPNs</h4>
+<p>A Virtual Private Network (VPN) allows you to connect your connect your computer to the Internet through a service. Once you are connected, it appears that all your traffic is going to one local address. Meanwhile, all your traffic is routed to another country of your choice.</p>
+
+<p>The limitations:</p>
+<ul>
+    <li>Not anonymous. Services may be forced to send your network activity to the government.</li>
+    <li>International companies may be subject to sanctions and stop operating (either by your own government, or another).</li>
+    <li>Most VPNs are paid services. If international payment gateways (like SWIFT) are shut down, a VPN may close your account for non-payment.</li>    
+</ul>
+
+<p>A couple of free alternatives exist (both supported by the <a href="https://www.opentech.fund/">Open Technology Fund</a>): <a href="https://s3.us-west-1.amazonaws.com/dwo-jar-kmf-883/download.html"></a>nthLink</a> and <a href="https://psiphon.ca/">Psiphon.</a> You can find some more detailed instructions (in Russian) and a few more free options <a href="https://d3olbu2cl74039.cloudfront.net/block">here</a></p>.
+
+<h4>The Tor Network</h4>
+
+<p>The Tor network is a virtual network that provides anonymity through the Internet. All traffic is passed through 3 different nodes in a protocol called onion routing.</p>
+
+<p>The easiest and most common way to connect is by using a Tor browser. Opening the browser will create a "Tor circuit" and begin routing all your traffic through its network. You can then browse the web as usual, or visit .onion links like the ones shown on the Links tab of this app.</p>
+
+<h5>Downoading the Tor Browser</h5>
+<ul>
+    <li>Windows, MacOS, Android, Linux: <a href="https:www.torproject.org/download">torproject.org</a></li>
+    <li>iOS: <a href="http://onionbrowser.com/">onionbrowser.com</a></li>
+    <li>Send an empty email to gettor@torproject.org</li> to receive a browser bundle.</li>
+</ul>
+
+<p>Sometimes even the Tor network will be blocked. This can sometimes be bypassed with a bridge. To use a bridge, you will have to obtain a link and then enter it into your Tor browser. Find a link in one of these ways:</p>
+<ul>
+    <li>Send "/bridges" to the Telegram channel @GetBridgesBot</li>
+    <li>Send an email to bridges@torproject.org</li>
+    <li>Select a built-in bridge through Snowflake in the Tor browser.
+    </li>
+</ul>
+
+<p>Find additional support in both English and Russian on the Telegram channel @TorProjectSupportBot</p>
