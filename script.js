@@ -28,6 +28,10 @@ function handleClick(e) {
     openModal(e.target.dataset.topic);
     return;
   }
+  if (e.target.matches('[data-copy-link]')) {
+    console.log(e.target.dataset.copyLink);
+    copyTextToClipboard(e.target.dataset.copyLink);
+  }
 
   // Ignore all other clicks after game ends
   if (gameOver) return;
@@ -208,9 +212,6 @@ function danceTiles(tiles) {
 
 // ----- Modal functions -----
 function openModal (topic) {
-  // modalContent.innerHTML = `<object type="text/html" data="${topic}.html" ></object>`;
-  // modalContent.innerHTML = `<iframe src="${topic}.html" frameborder="0" allowfullscreen></iframe>`;
-  // modalContent.innerHTML = `<div id="modal-snippet" w3-include-html="${topic}.html"></div>`;
   modalContent.innerHTML = `<div id="modal-snippet"><h3>Loading...</h3></div>`;
   includeHTMLSnippet(document.getElementById('modal-snippet'), `${topic}.html`);
   modalContainer.classList.add('show');
@@ -233,6 +234,59 @@ function includeHTMLSnippet(targetElement, filename) {
   xhttp.send();
 }
 
+function copyToClipboard(text) {
+  console.log("copying text:", text);
+  
+  // TODO: execCommand is deprecated. Try to find an alternative.
+  // with document.navigator.clipboard.writeText(text)
+  // Permissions will be required:
+  // https://www.w3.org/TR/clipboard-apis/#async-clipboard-api
+
+  const textArea = document.createElement('textarea');
+  textArea.value = text;
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand('copy');
+  textArea.remove();
+
+  showAlert("Copied to clipboard!");
+}
+
+// TODO: This is untested
+function fallbackCopyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+  textArea.value = text;
+  
+  // Avoid scrolling to bottom
+  textArea.style.top = "0";
+  textArea.style.left = "0";
+  textArea.style.position = "fixed";
+
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Fallback: Copying text command was ' + msg);
+  } catch (err) {
+    console.error('Fallback: Oops, unable to copy', err);
+  }
+
+  document.body.removeChild(textArea);
+}
+function copyTextToClipboard(text) {
+  if (!navigator.clipboard) {
+    fallbackCopyTextToClipboard(text);
+    return;
+  }
+  navigator.clipboard.writeText(text).then(function() {
+    console.log('Async: Copying to clipboard was successful!');
+  }, function(err) {
+    console.error('Async: Could not copy text: ', err);
+  });
+}
 
 // ----- Interaction functions -----
 

@@ -49,6 +49,14 @@ header {
   color: var(--color-greytext);
 }
 
+a {
+  color: var(--color-ukraine-blue);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
 header h1 {
   font-size: clamp(1em, 1.6em, 2em);
   line-height: 1;
@@ -85,7 +93,7 @@ header svg:hover {
   color: var(--color-ukraine-blue);
 }
 
-/* ------- Game board ------- */
+/* ------- Game Board ------- */
 
 .gameboard {
   display: grid;
@@ -296,7 +304,7 @@ header svg:hover {
   opacity: 0;
 }
 
-/* ------- Information Pages ------- */
+/* ------- Information (Modal) Pages ------- */
 #modal-container {
   position: fixed;
   top: 0;
@@ -329,6 +337,9 @@ header svg:hover {
 }
 
 #modal-content {
+  display: flex;
+  justify-content: center;
+
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -340,16 +351,18 @@ header svg:hover {
   /* box-shadow: 0 0 .5em hsl(0, 0%, 20%); */
   animation-name: modalOpen;
   animation-duration: 1s;
+
+  /* TODO: Ensure bottom of modal is not clipped
+     Remove border when fixed. */
 }
 
-#modal-content * {
+#modal-snippet {
   max-width: 800px;
-  /* TODO: re-center text */
 }
 
 #modal-content h3 {
   font-size: 2em;
-  color: red;
+  color: var(--color-ukraine-yellow);
 }
 
 .modal-close {
@@ -368,6 +381,35 @@ header svg:hover {
 @keyframes modalOpen {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+/* ----- Link Icon Styling ----- */
+
+.copy-link, .follow-link{
+  min-width: 2em;
+  height: 2em;
+  color: var(--color-ukraine-blue);
+}
+.copy-link:hover, .follow-link:hover{
+  color: var(--color-ukraine-yellow);
+  cursor: pointer;
+}
+.follow-link {
+  margin-left: .5em;
+}
+.icon-link-copy {
+  pointer-events: none;
+  width: 2em;
+  height: 2em;
+}
+.icon-link-follow {
+  width: 2em;
+  height: 2em;
+}
+
+.follow-link a:hover {
+  color: var(--color-ukraine-yellow);
+  text-decoration: none;
 }
 
 /* ----- Tables ----- */
