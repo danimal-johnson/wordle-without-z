@@ -87,7 +87,7 @@ header .btn-menu {
   cursor: pointer;
 }
 
-/* FIXME: Remove vertical scrolling */
+/* FIXME: Remove horizontal and vertical scrolling */
 /* TODO: Rescale the page for mobile below ~780px */
 @media (max-width: 780px) {
   header .btn-menu {
@@ -376,9 +376,6 @@ header .btn-menu {
   color: var(--color-whitetext);
   /* background-color: var(--color-background); */
   padding: 1em;
-  border: 2px solid var(--color-ukraine-blue);
-  /* border-radius: .3em; */
-  /* box-shadow: 0 0 .5em hsl(0, 0%, 20%); */
   animation-name: modalOpen;
   animation-duration: 1s;
 
@@ -396,6 +393,9 @@ header .btn-menu {
 }
 #modal-content h4 {
   font-size: 1.5em;
+  color: var(--color-ukraine-yellow);
+}
+#modal-content h5 {
   color: var(--color-ukraine-yellow);
 }
 
