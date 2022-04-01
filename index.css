@@ -39,6 +39,19 @@ body {
   background: var(--color-background);
 }
 
+@media (display-mode: standalone) {
+  body>#toolbar {
+    padding: env(safe-area-inset-top) 
+    env(safe-area-inset-right) 
+    env(safe-area-inset-bottom) /* Optional backup 2nd paramater: ..., 5px */
+    env(safe-area-inset-left) !important;
+  }
+
+  #itemInstall {
+    display: none;
+  }
+}
+
 svg {
   pointer-events: none;
 }
