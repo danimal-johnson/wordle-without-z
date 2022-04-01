@@ -1,0 +1,29 @@
+{
+  "name": "Wordle Without Z",
+  "short_name": "Wordle w/o Z",
+  "start_url": "./",
+  "orientation": "portrait",
+  "theme_color": "blue",
+  "background_color": "yellow",
+  "scope": "./",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "./assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+        {
+      "src": "./assets/icons/icon-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    },
+        {
+      "src": "./assets/icons/icon-512m.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "Description": "Tunnel through the iron curtain with a fun wordle game!"
+}
