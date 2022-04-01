@@ -132,7 +132,7 @@ header .btn-menu {
   .keyboard {
     height: 200px;
     width: 100vw;
-    border: 1px solid hotpink;
+    /* border: 1px solid hotpink; */
   }
 }
 
@@ -281,7 +281,7 @@ header .btn-menu {
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
-  border: 2px solid yellow;
+  /* border: 2px solid yellow; */
 }
 
 .keyboard {
@@ -291,7 +291,7 @@ header .btn-menu {
   gap: 0.25em;
   justify-content: center;
   height: 200px;
-  border: 1px solid aqua;
+  /* border: 1px solid aqua; */
 }
 
 .key {
