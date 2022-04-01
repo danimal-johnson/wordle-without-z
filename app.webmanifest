@@ -9,17 +9,17 @@
   "display": "standalone",
   "icons": [
     {
-      "src": "./assets/icons/icon-512.png",
+      "src": "./assets/icons/wwz-512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
         {
-      "src": "./assets/icons/icon-1024.png",
+      "src": "./assets/icons/wwz-1024.png",
       "sizes": "1024x1024",
       "type": "image/png"
     },
         {
-      "src": "./assets/icons/icon-512m.png",
+      "src": "./assets/icons/wwz-512m.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
