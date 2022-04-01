@@ -19,6 +19,9 @@
 
   --color-almost: var(--color-ukraine-yellow);
   --color-correct: var(--color-ukraine-blue);
+
+  --header-height: 50px;
+  --max-board-width: 500px;
 }
 
 body {
@@ -38,6 +41,8 @@ body {
   color: var(--color-whitetext);
   background: var(--color-background);
 }
+
+ /* ----- Standalone (app) Mode ----- */
 
 @media (display-mode: standalone) {
   body>#toolbar {
@@ -63,9 +68,9 @@ header {
   flex-wrap: nowrap;
   border-bottom: 1px solid var(--color-greytext);
   width: 100vw;
-  margin-bottom: 1em;
+  /* margin-bottom: 1em; */
   color: var(--color-greytext);
-  height: 50px;
+  height: var(--header-height);
   font-size: 1rem;
 }
 
@@ -116,13 +121,7 @@ header .btn-menu {
     align-items: center;
     width: 4em;
     height: 4em;
-  }
-  .btn-menu svg {
-    /* FIXME: Not effective */
-    /* display: block;
-    width: 100%; */
-    /* color: red; */
-  }
+  }  
   .gameboard {
     /* background-color: green; */
     /* FIXME: Not effective */
@@ -131,7 +130,9 @@ header .btn-menu {
     margin-right: 0;
   }
   .keyboard {
-    /* background-color: aqua; */
+    height: 200px;
+    width: 100vw;
+    border: 1px solid hotpink;
   }
 }
 
@@ -140,17 +141,38 @@ header .btn-menu {
   color: var(--color-ukraine-blue);
 }
 
-/* ------- Game Board ------- */
+/* ----- Game Container ----- */
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: calc(100vh - var(--header-height));
+  overflow: hidden;
+  margin: 0;
+}
 
+
+/* ------- Game Board ------- */
+.board-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: var(--max-board-width);
+}
 .gameboard {
   display: grid;
   justify-content: center;
   align-content: center;
-  flex-grow: 1;
+  /* flex-grow: 1; */
   grid-template-columns: repeat(5, 4em);
   grid-template-rows: repeat(6, 4em);
   gap: .25em;
-  margin-bottom: 1em;
+  margin-bottom: 1em auto;
 }
 
 .cell {
@@ -253,6 +275,14 @@ header .btn-menu {
 }
 
 /* ------- Keyboard ------- */
+.keyboard-container {
+  /* height: 200px; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  border: 2px solid yellow;
+}
 
 .keyboard {
   display: grid;
@@ -260,7 +290,8 @@ header .btn-menu {
   grid-auto-rows: 3em;
   gap: 0.25em;
   justify-content: center;
-  margin-bottom: 10px;
+  height: 200px;
+  border: 1px solid aqua;
 }
 
 .key {
@@ -301,9 +332,8 @@ header .btn-menu {
 }
 .key.wrong-position {
   /* --color-ukraine-yellow: hsl(49,50%,47%);
-     actually ffdd00 = 52, 100%, 50% = too bright!!
+    actually ffdd00 = 52, 100%, 50% = too bright!!
   */
-
   --hue: 49;
   --saturation: 50%;
   --lightness: 47%;
@@ -375,10 +405,10 @@ header .btn-menu {
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-  height: 2em;
+  height: var(--header-height);
   padding: 1em;
   background-color: var(--color-darkgrey);
-  
+  font-size: 1em;
   border-bottom: 1px solid hsl(240, 2%, 23%);
 }
 
@@ -390,13 +420,9 @@ header .btn-menu {
   height: 100%;
   overflow: auto;
   color: var(--color-whitetext);
-  /* background-color: var(--color-background); */
   padding: 1em;
   animation-name: modalOpen;
   animation-duration: 1s;
-
-  /* TODO: Ensure bottom of modal is not clipped
-     Remove border when fixed. */
 }
 
 #modal-snippet {
