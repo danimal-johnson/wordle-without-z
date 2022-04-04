@@ -108,7 +108,6 @@ header .btn-menu {
   cursor: pointer;
 }
 
-/* FIXME: Remove horizontal and vertical scrolling */
 /* TODO: Rescale the page for mobile below ~780px */
 @media (max-width: 780px) {
   header .btn-menu {
@@ -200,7 +199,7 @@ header .btn-menu {
   border: none;
 }
 .cell.incorrect {
-  background-color: var(--color-lightgrey);
+  background-color: var(--color-darkgrey);
 }
 .cell.wrong-position {
   background-color: var(--color-almost);
