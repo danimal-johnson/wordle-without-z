@@ -66,10 +66,10 @@ header {
   align-items: center;
   justify-content: space-between;
   flex-wrap: nowrap;
-  border-bottom: 1px solid var(--color-greytext);
+  border-bottom: 1px solid var(--color-lightgrey);
   width: 100vw;
   /* margin-bottom: 1em; */
-  color: var(--color-greytext);
+  color: var(--color-whitetext);
   height: var(--header-height);
   font-size: 1rem;
 }
@@ -84,11 +84,10 @@ a:hover {
 }
 
 header h1 {
-  font-size: clamp(1em, 1.6em, 2em);
+  font-size: clamp(1em, 1.6em, 2em); /* FIXME: This doesn't scale well */
   line-height: 1;
   margin: 0;
   padding: .2em .4em;
-  color: var(--color-whitetext);
 }
 
 header .left-icons {
@@ -101,6 +100,7 @@ header .right-icons {
   display: flex;
 }
 
+
 header .btn-menu {
   width: 2em;
   padding: .2em;
@@ -110,9 +110,9 @@ header .btn-menu {
 
 /* TODO: Rescale the page for mobile below ~780px */
 @media (max-width: 780px) {
-  header .btn-menu {
-    /* height: 4em; */
-  }
+  /* header .btn-menu {
+    height: 4em;
+  } */
   .btn-menu {
     display: flex;
     justify-content: center;
