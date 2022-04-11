@@ -31,7 +31,7 @@ body {
   justify-content: space-between;
   min-height: 100vh;
   margin: 0;
-  padding: 1em;
+  padding: 0em;
   padding-top: .1em;
   overflow: hidden;
 
@@ -106,33 +106,6 @@ header .btn-menu {
   padding: .2em;
   transition: color 150ms ease-in-out;
   cursor: pointer;
-}
-
-/* TODO: Rescale the page for mobile below ~780px */
-@media (max-width: 780px) {
-  /* header .btn-menu {
-    height: 4em;
-  } */
-  .btn-menu {
-    display: flex;
-    justify-content: center;
-    height: 4em;
-    align-items: center;
-    width: 4em;
-    height: 4em;
-  }  
-  .gameboard {
-    /* background-color: green; */
-    /* FIXME: Not effective */
-    width: 100vw;
-    margin-left: 0;
-    margin-right: 0;
-  }
-  .keyboard {
-    height: 200px;
-    width: 100vw;
-    /* border: 1px solid hotpink; */
-  }
 }
 
 .btn-menu:hover {
@@ -275,26 +248,33 @@ header .btn-menu {
 
 /* ------- Keyboard ------- */
 .keyboard-container {
-  /* height: 200px; */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-end;
+  height: 200px;
   /* border: 2px solid yellow; */
 }
 
 .keyboard {
-  display: grid;
-  grid-template-columns: repeat(20, minmax(auto, 1.25em));
-  grid-auto-rows: 3em;
-  gap: 0.25em;
-  justify-content: center;
   height: 200px;
+  /* border: 1px solid aqua; */
+}
+
+.kb-row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-content: center;
+  align-items: center;
+  margin: 0 auto 8px;
+  /* TODO: Calculate this */
+  /* width: 500px; */
+  /* width: minmax(90%, 500px); */
+  width: 100vw;
+  max-width: 800px;
   /* border: 1px solid aqua; */
 }
 
 .key {
   color: var(--color-whitetext);
+  height: 58px;
 
   background-color: hsl(
     var(--hue, 200),
@@ -302,19 +282,24 @@ header .btn-menu {
     calc(var(--lightness-offset, 0%) + var(--lightness, 51%))
   );
   
-  grid-column: span 2;
-  font-size: inherit;
+  font-size: 1em;
   border-radius: 5px;
   border: none;
   padding: 0;
+  margin-right: 6px;
   display: flex;
+  flex: 1;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
 
 .key.large {
-  grid-column: span 3;
+  flex: 1.5;
+}
+
+.key-offset {
+  flex: 0.5;
 }
 
 .key > svg {
@@ -345,6 +330,42 @@ header .btn-menu {
 }
 .key:hover, .key:focus {
   --lightness-offset: 10%;
+}
+.key:last-of-type {
+  margin-right: 0;
+}
+
+@media (max-width: 780px) {
+  /* header .btn-menu {
+    height: 4em;
+  } */
+  .btn-menu {
+    display: flex;
+    justify-content: center;
+    height: 4em;
+    align-items: center;
+    width: 4em;
+    height: 4em;
+  }  
+  .gameboard {
+    /* background-color: green; */
+    /* FIXME: Not effective */
+    width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .keyboard {
+    height: 200px;
+    width: 100%;
+    border: 1px solid hotpink;
+    display: absolute;
+    bottom: 0;
+  }
+
+  /* .kb-row {
+    min-width: 95%;
+    margin-bottom: 8px;
+   *} */
 }
 
 /* ------- Alert Box ------- */
@@ -395,7 +416,6 @@ header .btn-menu {
 }
 
 #modal-container.show {
-  /* display: block; */
   display: flex;
 }
 
