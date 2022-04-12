@@ -264,10 +264,8 @@ header .btn-menu {
   align-content: center;
   align-items: center;
   margin: 0 auto 8px;
-  /* TODO: Calculate this */
-  /* width: 500px; */
-  /* width: minmax(90%, 500px); */
-  width: 100vw;
+  
+  width: 95vw;
   max-width: 800px;
   /* border: 1px solid aqua; */
 }
@@ -357,7 +355,7 @@ header .btn-menu {
   .keyboard {
     height: 200px;
     width: 100%;
-    border: 1px solid hotpink;
+    /* border: 1px solid hotpink; */
     display: absolute;
     bottom: 0;
   }
