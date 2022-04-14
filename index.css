@@ -264,7 +264,7 @@ header .btn-menu {
   align-content: center;
   align-items: center;
   margin: 0 auto 8px;
-  
+
   width: 95vw;
   max-width: 800px;
   /* border: 1px solid aqua; */
@@ -280,7 +280,7 @@ header .btn-menu {
     calc(var(--lightness-offset, 0%) + var(--lightness, 51%))
   );
   
-  font-size: 1em;
+  font-size: 1.2rem;
   border-radius: 5px;
   border: none;
   padding: 0;
