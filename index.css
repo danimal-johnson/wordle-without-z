@@ -36,7 +36,7 @@ body {
   overflow: hidden;
 
   font-family: 'Open Sans', sans-serif;
-  font-size: clamp(.5rem, 2.5vmin, 1.5rem);
+  font-size: clamp(1rem, 2.5vmin, 1.5rem);
   line-height: 1.5;
   color: var(--color-whitetext);
   background: var(--color-background);
@@ -144,7 +144,8 @@ header .btn-menu {
   grid-template-columns: repeat(5, 4em);
   grid-template-rows: repeat(6, 4em);
   gap: .25em;
-  margin-bottom: 1em auto;
+  margin: auto;
+  margin-bottom: 1em;
 }
 
 .cell {
@@ -440,18 +441,21 @@ header .btn-menu {
   padding: 1em;
   animation-name: modalOpen;
   animation-duration: 1s;
+  font-size: clamp(1.2em, 1.5vw, 1.6em);
 }
 
 #modal-snippet {
   max-width: 800px;
 }
-
+#modal-content h2 {
+  font-size: 1.6em;
+}
 #modal-content h3 {
-  font-size: 2em;
+  font-size: 1.4em;
   color: var(--color-ukraine-yellow);
 }
 #modal-content h4 {
-  font-size: 1.5em;
+  font-size: 1.2em;
   color: var(--color-ukraine-yellow);
 }
 #modal-content h5 {
