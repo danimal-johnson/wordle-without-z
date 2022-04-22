@@ -68,7 +68,6 @@ header {
   flex-wrap: nowrap;
   border-bottom: 1px solid var(--color-lightgrey);
   width: 100vw;
-  /* margin-bottom: 1em; */
   color: var(--color-whitetext);
   height: var(--header-height);
   font-size: 1rem;
@@ -250,12 +249,10 @@ header .btn-menu {
 /* ------- Keyboard ------- */
 .keyboard-container {
   height: 200px;
-  /* border: 2px solid yellow; */
 }
 
 .keyboard {
   height: 200px;
-  /* border: 1px solid aqua; */
 }
 
 .kb-row {
@@ -268,7 +265,6 @@ header .btn-menu {
 
   width: 95vw;
   max-width: 800px;
-  /* border: 1px solid aqua; */
 }
 
 .key {
@@ -335,9 +331,6 @@ header .btn-menu {
 }
 
 @media (max-width: 780px) {
-  /* header .btn-menu {
-    height: 4em;
-  } */
   .btn-menu {
     display: flex;
     justify-content: center;
@@ -356,15 +349,9 @@ header .btn-menu {
   .keyboard {
     height: 200px;
     width: 100%;
-    /* border: 1px solid hotpink; */
     display: absolute;
     bottom: 0;
   }
-
-  /* .kb-row {
-    min-width: 95%;
-    margin-bottom: 8px;
-   *} */
 }
 
 /* ------- Alert Box ------- */

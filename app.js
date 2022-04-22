@@ -14,7 +14,7 @@ const startingDate = new Date(2022, 0, 1);
 const timeSinceDate = Date.now() - startingDate;
 const wordIndex = Math.floor(timeSinceDate / 1000 / 3600 / 24) % wordlist.length;
 const targetWord = wordlist[wordIndex];
-console.log(`Index ${wordIndex} = ${wordlist[wordIndex]}`);
+console.log(`WWZ #${wordIndex} = %c${wordlist[wordIndex]}`, 'color: red; background: red; font-weight: bold;');
 let gameOver = false;
 
 // ----- Handle clicks for all objects -----
@@ -29,7 +29,6 @@ function handleClick(e) {
     return;
   }
   if (e.target.matches('[data-copy-link]')) {
-    console.log(e.target.dataset.copyLink);
     copyTextToClipboard(e.target.dataset.copyLink);
   }
 
@@ -103,7 +102,10 @@ function submitGuess() {
   }
 
   stopInteraction();
-  activeTiles.forEach((...params) => flipTile(...params, submittedWord));
+  const letterCount = {};
+  resetLetterCount(letterCount, targetWord);
+  const tileColors = getTileColors(letterCount, submittedWord, targetWord);
+  activeTiles.forEach((...params) => flipTile(...params, submittedWord, tileColors));
 }
 
 function deleteLastLetter() {
@@ -123,6 +125,42 @@ function deleteLastLetter() {
 function getActiveTiles() {
   // Returns an array of all unsubmitted tiles on a line.
   return guessGrid.querySelectorAll('[data-state="active"]');
+}
+
+function resetLetterCount(letterCount, word) {
+  for (let key in letterCount) { delete letterCount[key]; }
+  for (let letter of word) {
+    if (letter in letterCount) {
+      letterCount[letter]++;
+    } else {
+      letterCount[letter] = 1;
+    }
+  } 
+}
+
+function getTileColors (letterCount, submittedWord, targetWord) {
+  let result = [];
+  // First pass: find matching and incorrect letters
+  for (let i = 0; i < submittedWord.length; i++) {
+    const letter = submittedWord[i];
+    if (letter === targetWord[i]) {
+      result.push('match');
+      letterCount[letter]--;
+    } else if (!(letter in letterCount)) {
+      result.push ('incorrect');
+    } else {
+      result.push('recheck');
+    }
+  }
+  // Second pass: determine if remaining letters are in the wrong position
+  for (let i = 0; i < result.length; i++)
+  {
+    if(result[i] === 'recheck') {
+      const letter = submittedWord[i];
+      result[i] = (letterCount[letter] > 0) ? 'wrong-position' : 'incorrect';
+    }
+  }
+  return result;
 }
 
 function showAlert(message, duration = 1000) {
@@ -151,7 +189,7 @@ function shakeTiles(tiles) {
 // ----- Game Logic -----
 
 // FIXME: A tile is always marked yellow even if it has already been marked blue
-function flipTile(tile, index, array, submittedWord) {
+function flipTile(tile, index, array, submittedWord, tileColors) {
   const letter = tile.dataset.letter;
   const key = keyboard.querySelector(`[data-key=${letter.toUpperCase()}]`);
   setTimeout(() => {
@@ -160,19 +198,23 @@ function flipTile(tile, index, array, submittedWord) {
 
   tile.addEventListener('transitionend', () => {
     tile.classList.remove('flip');
-    if (targetWord[index] === letter) {
-      key.classList.add('match');
-      tile.classList.add('match');
-      tile.dataset.state = 'match';
-    } else if (targetWord.includes(letter)) {
-      key.classList.add('wrong-position');
-      tile.classList.add('wrong-position');
-      tile.dataset.state = 'wrong-position';
-    } else {
-      key.classList.add('incorrect');
-      tile.classList.add('incorrect');
-      tile.dataset.state = 'incorrect';
-    }
+    // if (targetWord[index] === letter) {
+    //   key.classList.add('match');
+    //   tile.classList.add('match');
+    //   tile.dataset.state = 'match';
+    // } else if (targetWord.includes(letter)) {
+    //   key.classList.add('wrong-position');
+    //   tile.classList.add('wrong-position');
+    //   tile.dataset.state = 'wrong-position';
+    // } else {
+    //   key.classList.add('incorrect');
+    //   tile.classList.add('incorrect');
+    //   tile.dataset.state = 'incorrect';
+    // }
+    let status = tileColors[index];
+    key.classList.add(status);
+    tile.classList.add(status);
+    tile.dataset.state = status;
 
     if (index === array.length - 1) {
       tile.addEventListener('transitionend', () => {
@@ -234,25 +276,8 @@ function includeHTMLSnippet(targetElement, filename) {
   xhttp.send();
 }
 
-function copyToClipboard(text) {
-  console.log("copying text:", text);
-  
-  // TODO: execCommand is deprecated. Try to find an alternative.
-  // with document.navigator.clipboard.writeText(text)
-  // Permissions will be required:
-  // https://www.w3.org/TR/clipboard-apis/#async-clipboard-api
-
-  const textArea = document.createElement('textarea');
-  textArea.value = text;
-  document.body.appendChild(textArea);
-  textArea.select();
-  document.execCommand('copy');
-  textArea.remove();
-
-  showAlert("Copied to clipboard!");
-}
-
-// TODO: This is untested
+// Fallback function for browsers that don't support async clipboard API
+// Only call if copyTextToClipboard() fails
 function fallbackCopyTextToClipboard(text) {
   var textArea = document.createElement("textarea");
   textArea.value = text;
@@ -273,9 +298,9 @@ function fallbackCopyTextToClipboard(text) {
   } catch (err) {
     console.error('Fallback: Oops, unable to copy', err);
   }
-
   document.body.removeChild(textArea);
 }
+
 function copyTextToClipboard(text) {
   if (!navigator.clipboard) {
     fallbackCopyTextToClipboard(text);
