@@ -7,13 +7,13 @@ A clone of the popular Wordle game by Josh Wardle. This version eliminates the l
 Because Wordle is a very simple and fun game. And because information needs to be free.
 
 ### Background
-Ukraine is under attack in a brutal invasion. The aggressor has been telling its conscripted troops that they are just going to a "special military operation" and that their is no war.
+Ukraine is under attack in a brutal invasion. The aggressor has been telling its conscripted troops that they are just going to a "special military operation" and that there is no war.
 
-The world knows different, but now Russia has cut its citizens off from the world. All non-state-owned media has been shuttered. Increasingly larger portions oif the Internet are being blocked, including all news sites and social media. Protesters are dealt with swiftly.
+The world knows different, but now Russia has cut its citizens off from the world. All non-state-owned media has been shuttered. Increasingly larger portions off the Internet are being blocked, including all news sites and social media. Protesters are dealt with swiftly.
 
 The result: People hear only the official story. The word "war" is banned. Fewer people believe there even is a war. Protests dwindle. A pro-government movement develops and gets bigger every day.
 
-This pro-government, pro-war movement has chosen the letter **Z** as its symbol. Originally, it was written on tanks. Then as grafitti. Now it has an official logo and appears on clothing, signs, bumper-stickers, etc. 
+This pro-government, pro-war movement has chosen the letter **Z** as its symbol. Originally, it was written on tanks. Then as grafitti. Now it has an official logo and appears on clothing, signs, bumper-stickers, etc.
 
 ### App benefits
 The main menu of the app provides information on getting connected to the Internet through the government firewall using VPNs and Tor. It also provides frequencies and times of international shortwave news broadcasts.
@@ -47,6 +47,7 @@ There will always be too many things to list. The information here is just to he
 * If a letter only occurs once but is entered in both a correct and incorrect location, a tile will turn yellow when it shouldn't.
 * The keyboard doesn't scale well on mobile devices
 * On first load, each screen must be refreshed before content can be loaded.
+* Results are not yet saved to clipboard; ignore the 'saved to clipboard' message for now.
 ### Planned updates
 Ability to share results.
 ### Contributing
