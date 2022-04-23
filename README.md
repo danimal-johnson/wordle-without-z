@@ -48,6 +48,7 @@ There will always be too many things to list. The information here is just to he
 * The keyboard doesn't scale well on mobile devices
 * On first load, each screen must be refreshed before content can be loaded.
 * Results are not yet saved to clipboard; ignore the 'saved to clipboard' message for now.
+
 ### Planned updates
 Ability to share results.
 ### Contributing
