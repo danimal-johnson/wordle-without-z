@@ -8,7 +8,7 @@ const modalContent = document.querySelector('#modal-content');
 
 const WORD_LENGTH = 5;
 const DANCE_ANIMATION_DURATION = 1000;
-const FLIP_ANIMATION_DURATION = 500;
+const FLIP_ANIMATION_DURATION = 350;
 
 const startingDate = new Date(2022, 0, 1);
 const timeSinceDate = Date.now() - startingDate;
@@ -187,8 +187,6 @@ function shakeTiles(tiles) {
 }
 
 // ----- Game Logic -----
-
-// FIXME: A tile is always marked yellow even if it has already been marked blue
 function flipTile(tile, index, array, submittedWord, tileColors) {
   const letter = tile.dataset.letter;
   const key = keyboard.querySelector(`[data-key=${letter.toUpperCase()}]`);
@@ -198,19 +196,6 @@ function flipTile(tile, index, array, submittedWord, tileColors) {
 
   tile.addEventListener('transitionend', () => {
     tile.classList.remove('flip');
-    // if (targetWord[index] === letter) {
-    //   key.classList.add('match');
-    //   tile.classList.add('match');
-    //   tile.dataset.state = 'match';
-    // } else if (targetWord.includes(letter)) {
-    //   key.classList.add('wrong-position');
-    //   tile.classList.add('wrong-position');
-    //   tile.dataset.state = 'wrong-position';
-    // } else {
-    //   key.classList.add('incorrect');
-    //   tile.classList.add('incorrect');
-    //   tile.dataset.state = 'incorrect';
-    // }
     let status = tileColors[index];
     key.classList.add(status);
     tile.classList.add(status);
@@ -229,6 +214,7 @@ function checkWinLose(submittedWord, tiles) {
   if (submittedWord === targetWord) {
     showAlert('You Win!', 5000);
     danceTiles(tiles);
+    showAlert('Copying results to clipboard...', 2000);
     endGame();
     return;
   }
@@ -273,6 +259,9 @@ function includeHTMLSnippet(targetElement, filename) {
     }
   }
   xhttp.open("GET", filename, true);
+  console.log(xhttp);
+  // FIXME: "The fetch event for http://.../links.html resulted in a network error response.
+  // an object that was not a Response was passed to respondWith()." (next line)
   xhttp.send();
 }
 
@@ -295,6 +284,7 @@ function fallbackCopyTextToClipboard(text) {
     var successful = document.execCommand('copy');
     var msg = successful ? 'successful' : 'unsuccessful';
     console.log('Fallback: Copying text command was ' + msg);
+    showAlert('Copied to clipboard', 1000);
   } catch (err) {
     console.error('Fallback: Oops, unable to copy', err);
   }
@@ -308,6 +298,7 @@ function copyTextToClipboard(text) {
   }
   navigator.clipboard.writeText(text).then(function() {
     console.log('Async: Copying to clipboard was successful!');
+    showAlert('Copied');
   }, function(err) {
     console.error('Async: Could not copy text: ', err);
   });
