@@ -222,16 +222,36 @@ function flipTile(tile, index, array, submittedWord, tileColors) {
 
 function checkWinLose(submittedWord, tiles) {
   if (submittedWord === targetWord) {
-    showAlert('You Win!', 5000);
+    showAlert(getWinToastText(), 5000);
     danceTiles(tiles);
     endGame(`Wordle Without Z\n#${wordIndex} (${guessCount}/6)\n${outcomeString}`);
     return;
   }
   const remainingTiles = guessGrid.querySelectorAll(':not([data-letter])');
   if (remainingTiles.length === 0) {
-    showAlert(`${targetWord.toUpperCase()}`, null);
+    // showAlert(`${targetWord.toUpperCase()}`, null);
+    showAlert(`The word was ${targetWord.toUpperCase()}.`, 5000);
     shakeTiles(tiles);
     endGame(`Wordle Without Z\n#${wordIndex} (X/6)\n${outcomeString}`);
+  }
+}
+
+function getWinToastText() {
+  switch (guessCount) {
+    case 1:
+      return 'Unbelievable!! (Did you cheat?)';
+    case 2:
+      return 'Incredible!!';
+    case 3:
+      return 'Great Job!!';
+    case 4:
+      return 'Nice Work!';
+    case 5:
+      return 'You got it!';
+    case 6:
+      return 'Whew!';
+    default:
+      return `The word was ${targetWord.toUpperCase()}.`;
   }
 }
 
@@ -276,7 +296,7 @@ function includeHTMLSnippet(targetElement, filename) {
 
 // Fallback function for browsers that don't support async clipboard API
 // Only call if copyTextToClipboard() fails
-function fallbackCopyTextToClipboard(text) {
+function fallbackCopyTextToClipboard(text, displayToast) {
   var textArea = document.createElement("textarea");
   textArea.value = text;
   
@@ -293,21 +313,21 @@ function fallbackCopyTextToClipboard(text) {
     var successful = document.execCommand('copy');
     var msg = successful ? 'successful' : 'unsuccessful';
     console.log('Fallback: Copying text command was ' + msg);
-    showAlert('Copied to clipboard', 1000);
+    if (displayToast) showAlert('Copied to clipboard', 1000);
   } catch (err) {
     console.error('Fallback: Oops, unable to copy', err);
   }
   document.body.removeChild(textArea);
 }
 
-function copyTextToClipboard(text) {
+function copyTextToClipboard(text, displayToast = true) {
   if (!navigator.clipboard) {
-    fallbackCopyTextToClipboard(text);
+    fallbackCopyTextToClipboard(text, displayToast);
     return;
   }
   navigator.clipboard.writeText(text).then(function() {
     console.log('Async: Copying to clipboard was successful!');
-    showAlert('Copied');
+    if (displayToast) showAlert('Copied');
   }, function(err) {
     console.error('Async: Could not copy text: ', err);
   });
@@ -328,7 +348,7 @@ function stopInteraction() {
 function endGame(shareString) {
   gameOver = true;
   document.removeEventListener('keydown', handleKeyPress);
-  copyTextToClipboard(shareString);
+  copyTextToClipboard(shareString, false);
   showAlert('Copying results to clipboard...', 2000);
   console.log(shareString);
   console.log('Can navigator share?', navigator.canShare());
