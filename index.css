@@ -82,6 +82,16 @@ a:hover {
   text-decoration: none;
 }
 
+.install-button {
+  color: var(--color-ukraine-blue);
+  text-decoration: none;
+  cursor: pointer;
+}
+.install-button:hover {
+  color: var(--color-ukraine-yellow);
+  text-decoration: none;
+}
+
 header h1 {
   font-size: clamp(1em, 1.6em, 2em); /* FIXME: This doesn't scale well */
   line-height: 1;
@@ -407,7 +417,7 @@ header .btn-menu {
 
 #modal-header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: var(--header-height);

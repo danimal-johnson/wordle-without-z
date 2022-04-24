@@ -15,6 +15,8 @@ const timeSinceDate = Date.now() - startingDate;
 const wordIndex = Math.floor(timeSinceDate / 1000 / 3600 / 24) % wordlist.length;
 const targetWord = wordlist[wordIndex];
 console.log(`WWZ #${wordIndex} = %c${wordlist[wordIndex]}`, 'color: red; background: red; font-weight: bold;');
+let outcomeString = '';
+let guessCount = 0;
 let gameOver = false;
 
 // ----- Handle clicks for all objects -----
@@ -140,16 +142,20 @@ function resetLetterCount(letterCount, word) {
 
 function getTileColors (letterCount, submittedWord, targetWord) {
   let result = [];
+  let resultBoxes = [];
   // First pass: find matching and incorrect letters
   for (let i = 0; i < submittedWord.length; i++) {
     const letter = submittedWord[i];
     if (letter === targetWord[i]) {
       result.push('match');
+      resultBoxes.push('🟦');
       letterCount[letter]--;
     } else if (!(letter in letterCount)) {
-      result.push ('incorrect');
+      result.push('incorrect');
+      resultBoxes.push('⬛');
     } else {
       result.push('recheck');
+      resultBoxes.push('');
     }
   }
   // Second pass: determine if remaining letters are in the wrong position
@@ -158,8 +164,12 @@ function getTileColors (letterCount, submittedWord, targetWord) {
     if(result[i] === 'recheck') {
       const letter = submittedWord[i];
       result[i] = (letterCount[letter] > 0) ? 'wrong-position' : 'incorrect';
+      resultBoxes[i] = (letterCount[letter] > 0) ? '🟨' : '⬛';
     }
   }
+  outcomeString += resultBoxes.join('');
+  outcomeString += '\n';
+  guessCount++;
   return result;
 }
 
@@ -214,15 +224,14 @@ function checkWinLose(submittedWord, tiles) {
   if (submittedWord === targetWord) {
     showAlert('You Win!', 5000);
     danceTiles(tiles);
-    showAlert('Copying results to clipboard...', 2000);
-    endGame();
+    endGame(`Wordle Without Z\n#${wordIndex} (${guessCount}/6)\n${outcomeString}`);
     return;
   }
   const remainingTiles = guessGrid.querySelectorAll(':not([data-letter])');
   if (remainingTiles.length === 0) {
     showAlert(`${targetWord.toUpperCase()}`, null);
     shakeTiles(tiles);
-    endGame();
+    endGame(`Wordle Without Z\n#${wordIndex} (X/6)\n${outcomeString}`);
   }
 }
 
@@ -316,10 +325,41 @@ function stopInteraction() {
   document.removeEventListener('click', handleClick);
 }
 
-function endGame() {
+function endGame(shareString) {
   gameOver = true;
   document.removeEventListener('keydown', handleKeyPress);
+  copyTextToClipboard(shareString);
+  showAlert('Copying results to clipboard...', 2000);
+  console.log(shareString);
+  console.log('Can navigator share?', navigator.canShare());
 }
+
+
+// ----- App installation functions -----
+let bipEvent = null;
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  bipEvent = e;
+});
+
+document.querySelector('.install-button').addEventListener('click', e => {
+  if (bipEvent) {
+    bipEvent.prompt();
+    console.log('Install clicked. User should install now.');
+  } else {
+    // Incompatible browser, PWA doesn't pass all criteria, or app already installed by user.
+    // TODO: Show user how to install the app.
+    // TODO: Figure out if the app is installed (if possible)
+    alert(`To install the app, look for "Install" or "Add to Home Screen" in your browser's menu.`);
+    console.log('Install clicked. Unable to install.');
+  }
+});
 
 // ----- Start the game -----
 startInteraction();
+
+// TODO:
+// - Use pwabuilder.com to build the app for all online stores.
+// - Test with https://developer.samsung.com/remotetestlab/
+// - From iOS, use https://itest.nz/
+// - Add screenshots for install dialog.
