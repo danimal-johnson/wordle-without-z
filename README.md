@@ -16,7 +16,7 @@ Because Wordle is a very simple and fun game. And because information needs to b
 ### Motivation
 Ukraine is currently under attack in a brutal invasion. The Russian government has been telling its troops that they are just going to a "special military operation" and that there is no war.
 
-The world knows different, but now Russia has cut its citizens off from the world. All non-state-owned media has been shuttered. Increasingly larger portions of the Internet are being blocked, including all news sites and social media. Long prison sentences have been enacted for those who vocally disagree with the government. Protesters are dealt with swiftly.
+The world knows different, but now Russia has cut its citizens off from the world. All non-state-owned media has been shuttered. Increasingly-larger portions of the Internet are being blocked, including all news sites and social media. Long prison sentences have been enacted for those who vocally disagree with the government. Protesters are dealt with swiftly.
 
 The result: People hear only the official story. The word "war" is banned. Fewer people believe there even is a war. Protests dwindle. A pro-government movement develops and gets bigger every day.
 
@@ -50,7 +50,7 @@ There are 3 basic sections:
 * Shortwave radio frequencies and program times for media networks. Many news outlets still broadcast their programming worldwide.
 
 ### Why not add information on aid organizations and how to help Ukraine?
-The information here is just to help citizens whose media is blocked to get access *to* the rest of the world, find out the truth, and hopefully not join the war.
+The information here is focused on helping citizens whose media is blocked to get access *to* the rest of the world, find out the truth, and hopefully not join the war.
 
 There will always be too many things to list and maintain in a small app.
 
