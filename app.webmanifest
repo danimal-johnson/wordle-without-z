@@ -30,12 +30,16 @@
     {
       "src": "./assets/screenshots/game.png",
       "sizes": "1081x2340",
-      "type": "image/png"
+      "type": "image/png",
+      "platform": "android",
+      "label": "Main Game Page"
     },
     {
       "src": "./assets/screenshots/radio.png",
       "sizes": "1081x2340",
-      "type": "image/png"
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Shortwave Radio Station Table"
     }
   ]
 }

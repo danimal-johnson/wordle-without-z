@@ -481,6 +481,9 @@ header .btn-menu {
   .install-button {
     display: none;
   }
+  #modal-header {
+    justify-content: flex-end;
+  }
 }
 
 /* ----- Link Icon Styling ----- */
