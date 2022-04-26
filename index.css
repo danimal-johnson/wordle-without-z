@@ -477,6 +477,12 @@ header .btn-menu {
   to { opacity: 1; }
 }
 
+@media(display-mode: standalone) {
+  .install-button {
+    display: none;
+  }
+}
+
 /* ----- Link Icon Styling ----- */
 
 .copy-link, .follow-link{

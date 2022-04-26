@@ -351,9 +351,10 @@ function endGame(shareString) {
   copyTextToClipboard(shareString, false);
   showAlert('Copying results to clipboard...', 2000);
   console.log(shareString);
-  console.log('Can navigator share?', navigator.canShare());
+  if (navigator.canShare && navigator.canShare()) console.log('%cNative sharing permitted', 'color: green');
+  if (navigator.canShare && !navigator.canShare()) console.log('Native sharing available, not permitted');
+  if (!navigator.canShare) console.log('%cNative sharing not supported. %cClipboard only.', 'color: red');
 }
-
 
 // ----- App installation functions -----
 let bipEvent = null;
@@ -369,7 +370,6 @@ document.querySelector('.install-button').addEventListener('click', e => {
   } else {
     // Incompatible browser, PWA doesn't pass all criteria, or app already installed by user.
     // TODO: Show user how to install the app.
-    // TODO: Figure out if the app is installed (if possible)
     alert(`To install the app, look for "Install" or "Add to Home Screen" in your browser's menu.`);
     console.log('Install clicked. Unable to install.');
   }

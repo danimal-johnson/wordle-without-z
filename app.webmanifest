@@ -25,5 +25,17 @@
       "purpose": "maskable"
     }
   ],
-  "Description": "Tunnel through the iron curtain with a fun wordle game!"
+  "description": "Tunnel through the iron curtain with a fun wordle game!",
+  "screenshots": [
+    {
+      "src": "./assets/screenshots/game.png",
+      "sizes": "1081x2340",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/screenshots/radio.png",
+      "sizes": "1081x2340",
+      "type": "image/png"
+    }
+  ]
 }
