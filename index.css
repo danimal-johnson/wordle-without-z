@@ -472,6 +472,13 @@ header .btn-menu {
   pointer-events: none;
 }
 
+/* TODO: replace this once SVG bug is fixed. */
+.inline-link {
+  height: 1em;
+  width: 1em;
+  background: purple;
+}
+
 @keyframes modalOpen {
   from { opacity: 0; }
   to { opacity: 1; }
