@@ -101,18 +101,19 @@ header h1 {
 
 header .left-icons {
   padding-left: .5rem;
+  max-height: 100%;
   display: flex;
 }
 
 header .right-icons {
   padding-right: .5rem;
+  max-height: 100%;
   display: flex;
 }
 
-
 header .btn-menu {
-  width: 2em;
-  padding: .2em;
+  width: var(--header-height);
+  padding: .3em .4em .5em .4em;
   transition: color 150ms ease-in-out;
   cursor: pointer;
 }
