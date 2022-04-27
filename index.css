@@ -99,6 +99,20 @@ header h1 {
   padding: .2em .4em;
 }
 
+.title .narrow {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .title .narrow {
+    display: inline;
+  }
+  .title .wide {
+    display: none;
+  }
+}
+
+
 header .left-icons {
   padding-left: .5rem;
   display: flex;
