@@ -103,7 +103,7 @@ header h1 {
   display: none;
 }
 
-@media (max-width: 500px) {
+@media screen and (max-width: 500px) {
   .title .narrow {
     display: inline;
   }
