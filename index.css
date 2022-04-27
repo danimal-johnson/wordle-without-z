@@ -36,7 +36,7 @@ body {
   overflow: hidden;
 
   font-family: 'Open Sans', sans-serif;
-  font-size: clamp(1rem, 2.5vmin, 1.5rem);
+  /* font-size: clamp(1rem, 2.5vmin, 1.5rem); */
   line-height: 1.5;
   color: var(--color-whitetext);
   background: var(--color-background);
@@ -358,7 +358,6 @@ header .btn-menu {
   .keyboard {
     height: 200px;
     width: 100%;
-    display: absolute;
     bottom: 0;
   }
 }
