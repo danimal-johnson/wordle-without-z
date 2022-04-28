@@ -99,7 +99,7 @@ header h1 {
   padding: .2em .4em;
 }
 
-.title .narrow {
+.title .narrow, .title .tiny {
   display: none;
 }
 
@@ -107,7 +107,16 @@ header h1 {
   .title .narrow {
     display: inline;
   }
-  .title .wide {
+  .title .wide, .title .tiny {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 336px) {
+  .title .tiny {
+    display: inline;
+  }
+  .title .wide, .title .narrow {
     display: none;
   }
 }
@@ -206,7 +215,6 @@ header .btn-menu {
 }
 @media screen and (max-height: 600px) {
   .cell {
-    color: yellowgreen;
     font-size: 1em;
     line-height: 1em;
   }
