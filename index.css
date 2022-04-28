@@ -170,6 +170,15 @@ header .btn-menu {
   margin-bottom: 1em;
 }
 
+@media screen and (max-width: 500px) {
+  .gameboard {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    max-height: 90%;
+    max-width: 90%;
+  }
+}
+
 .cell {
   display: flex;
   align-items: center;
@@ -184,6 +193,24 @@ header .btn-menu {
   text-transform: uppercase;
   user-select: none;
   transition: transform 250ms linear;
+}
+
+@media screen and (max-height: 700px) {
+  /* TODO: Keep the tiles square */
+  .gameboard {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    max-height: 90%;
+    max-width: 90%;
+  }
+}
+@media screen and (max-height: 600px) {
+  .cell {
+    color: yellowgreen;
+    font-size: 1em;
+    line-height: 1em;
+  }
+
 }
 
 .cell[data-state="active"] {
