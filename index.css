@@ -178,6 +178,8 @@ header .btn-menu {
   gap: .25em;
   margin: auto;
   margin-bottom: 1em;
+  /* TODO: Testing only */
+  background-color: lightblue;
 }
 
 @media screen and (max-width: 500px) {
@@ -224,6 +226,7 @@ header .btn-menu {
     line-height: 1em;
   }
   .board-container {
+    position: relative;
     height: 100%;
     border: 2px solid red;
   }
