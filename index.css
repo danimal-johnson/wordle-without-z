@@ -166,6 +166,7 @@ header .btn-menu {
   justify-content: center;
   width: 100%;
   max-width: var(--max-board-width);
+  max-height: 100%;
 }
 .gameboard {
   display: grid;
