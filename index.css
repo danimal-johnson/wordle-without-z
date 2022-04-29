@@ -224,7 +224,7 @@ header .btn-menu {
     line-height: 1em;
   }
   .board-container {
-    height: 75px;
+    height: 100%;
     border: 2px solid red;
   }
 
