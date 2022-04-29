@@ -213,11 +213,19 @@ header .btn-menu {
     max-height: 90%;
     max-width: 90%;
   }
+  .board-container {
+    height: 100px;
+    border: 2px dotted yellow;
+  }
 }
 @media screen and (max-height: 600px) {
   .cell {
     font-size: 1em;
     line-height: 1em;
+  }
+  .board-container {
+    height: 75px;
+    border: 2px solid red;
   }
 
 }
