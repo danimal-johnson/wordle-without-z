@@ -21,7 +21,7 @@
   --color-correct: var(--color-ukraine-blue);
 
   --header-height: 50px;
-  --max-board-width: 500px;
+  --max-board-width: 318px;
 }
 
 body {
@@ -149,11 +149,12 @@ header .btn-menu {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100vw;
   height: calc(100vh - var(--header-height));
   overflow: hidden;
   margin: 0;
+  background: pink;
 }
 
 
@@ -161,37 +162,45 @@ header .btn-menu {
 .board-container {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  /* flex-grow: 1; */
   align-items: center;
   justify-content: center;
   width: 100%;
   max-width: var(--max-board-width);
+  height: calc(100% - var(--header-height));
+  /* max-height: var(--max-board-width); */
   max-height: 100%;
+  border: 1px dotted cyan;
 }
 .gameboard {
   display: grid;
   justify-content: center;
   align-content: center;
-  flex-grow: 1;
-  grid-template-columns: repeat(5, 4em);
-  grid-template-rows: repeat(6, 4em);
+  flex-grow: 1; /* Grow lines into boxes. */
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(6, 1fr);
   gap: .25em;
   margin: auto;
-  margin-bottom: 1em;
+  /* margin-bottom: 1em; */
   /* TODO: Testing only */
-  background-color: lightblue;
+  /* background-color: lightblue; */
+  width: 100%;
+  padding: 10px;
+  max-height: var(--max-board-width);
 }
 
 @media screen and (max-width: 500px) {
   .gameboard {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(6, 1fr);
-    max-height: 90%;
-    max-width: 90%;
+    /* max-height: 90%; */
+    /* max-width: 90%; */
+    padding: 10px;
   }
 }
 
 .cell {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -205,18 +214,41 @@ header .btn-menu {
   text-transform: uppercase;
   user-select: none;
   transition: transform 250ms linear;
+  /* aspect-ratio: 1 / 1; */
 }
+
+/* .cell::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+} */
+
+/* .cell .content {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 100%;
+  color: red;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+*/
+
 
 @media screen and (max-height: 700px) {
   /* TODO: Keep the tiles square */
-  .gameboard {
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    max-height: 90%;
-    max-width: 90%;
-  }
+  /* .gameboard { */
+    /* grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr); */
+    /* max-height: 90%; */
+    /* max-width: 90%; */
+    /* width: 100%; */
+    /* padding: 10px; */
+  /* } */
   .board-container {
-    height: 100px;
+    /* height: 100px; */
     border: 2px dotted yellow;
   }
 }
@@ -230,7 +262,6 @@ header .btn-menu {
     height: 100%;
     border: 2px solid red;
   }
-
 }
 
 .cell[data-state="active"] {
@@ -400,7 +431,7 @@ header .btn-menu {
   margin-right: 0;
 }
 
-@media (max-width: 780px) {
+@media screen and (max-width: 780px) {
   .btn-menu {
     display: flex;
     justify-content: center;
@@ -412,7 +443,7 @@ header .btn-menu {
   .gameboard {
     /* background-color: green; */
     /* FIXME: Not effective */
-    width: 100vw;
+    width: 100%;
     margin-left: 0;
     margin-right: 0;
   }
