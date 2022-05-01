@@ -180,6 +180,7 @@ header .btn-menu {
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(6, 1fr);
   gap: .25em;
+  grid-gap: .25em; /* For iOS */
   margin: auto;
   /* margin-bottom: 1em; */
   /* TODO: Testing only */
