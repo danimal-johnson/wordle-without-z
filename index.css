@@ -125,6 +125,7 @@ header h1 {
 header .left-icons {
   padding-left: .5rem;
   display: flex;
+  color: red;
 }
 
 header .right-icons {
@@ -137,6 +138,7 @@ header .btn-menu {
   padding: .3em .4em .5em .4em;
   transition: color 150ms ease-in-out;
   cursor: pointer;
+  color: green;
 }
 
 .btn-menu:hover {
