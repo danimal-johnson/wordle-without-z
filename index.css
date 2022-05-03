@@ -138,7 +138,12 @@ header .btn-menu {
   padding: .3em .4em .5em .4em;
   transition: color 150ms ease-in-out;
   cursor: pointer;
-  color: green;
+  /* color: green; */
+}
+
+.btn-menu svg {
+  fill: orange;
+  stroke: cyan;
 }
 
 .btn-menu:hover {
@@ -220,6 +225,7 @@ header .btn-menu {
   /* aspect-ratio: 1 / 1; */
 }
 
+/* Trick to pre-fill the grid and set a height:  */
 /* .cell::before {
   content: '';
   display: block;
@@ -550,6 +556,8 @@ header .btn-menu {
 
 .modal-close {
   color: var(--color-ukraine-blue);
+  /* TODO: Remove after test */
+  border: 2px solid yellow;
 }
 .modal-close:hover {
   color: var(--color-ukraine-yellow);
@@ -558,7 +566,8 @@ header .btn-menu {
 .modal-close > svg {
   padding-top: .25em;
   width: 2em;
-  pointer-events: none;
+  /* FIXME: Will this fix the Safari no-close issue? */
+  /* pointer-events: none; */
 }
 
 /* TODO: replace this once SVG bug is fixed. */
