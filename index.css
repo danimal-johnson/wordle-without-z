@@ -241,21 +241,14 @@ header .btn-menu {
 
 
 @media screen and (max-height: 700px) {
-  /* TODO: Keep the tiles square */
-  /* .gameboard { */
-    /* grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(6, 1fr); */
-    /* max-height: 90%; */
-    /* max-width: 90%; */
-    /* width: 100%; */
-    /* padding: 10px; */
-  /* } */
+  /* FIXME: This keeps the tiles square, but doesn't let them scale down. */
   .board-container {
     /* height: 100px; */
     border: 2px dotted yellow;
   }
 }
 @media screen and (max-height: 600px) {
+  /* FIXME: Allows squishing, but doesn't maintain squares. This is actually OK.*/
   .cell {
     font-size: 1em;
     line-height: 1em;
@@ -264,6 +257,9 @@ header .btn-menu {
     position: relative;
     height: 100%;
     border: 2px solid red;
+  }
+  .gameboard {
+    flex-grow: 1;
   }
 }
 
