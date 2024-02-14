@@ -8,7 +8,7 @@ const modalContent = document.querySelector('#modal-content');
 
 const WORD_LENGTH = 5;
 const DANCE_ANIMATION_DURATION = 1000;
-const FLIP_ANIMATION_DURATION = 350;
+const FLIP_ANIMATION_DELAY = 250;
 
 const startingDate = new Date(2022, 0, 1);
 const timeSinceDate = Date.now() - startingDate;
@@ -202,7 +202,7 @@ function flipTile(tile, index, array, submittedWord, tileColors) {
   const key = keyboard.querySelector(`[data-key=${letter.toUpperCase()}]`);
   setTimeout(() => {
     tile.classList.add('flip');
-  }, index * 500);
+  }, index * FLIP_ANIMATION_DELAY);
 
   tile.addEventListener('transitionend', () => {
     tile.classList.remove('flip');
