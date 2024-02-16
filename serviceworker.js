@@ -1,6 +1,6 @@
 // Cache URLs (not filenames) for offline use.
 const assets = ["/", "index.css", "app.js", "sw-register.js"];
-const version = "v1.1.4";
+const version = "v1.1.5";
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open('assets')
